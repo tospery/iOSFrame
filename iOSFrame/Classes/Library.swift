@@ -27,7 +27,9 @@ open class Library {
     }
 
     open class func setupSwiftyBeaver() {
-        log.addDestination(ConsoleDestination.init())
+        let console = ConsoleDestination.init()
+        console.format = "$DHH:mm:ss.SSS$d $T $C$L$c $N.$F:$l - $M"
+        log.addDestination(console)
         log.addDestination(FileDestination.init())
     }
     
