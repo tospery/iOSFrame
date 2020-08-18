@@ -1,0 +1,12 @@
+platform :ios, '10.0'
+use_frameworks!
+
+target 'iOSFrame_Example' do
+  pod 'iOSFrame', :path => '../'
+
+  target 'iOSFrame_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
