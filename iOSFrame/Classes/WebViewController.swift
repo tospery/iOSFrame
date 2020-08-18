@@ -1,6 +1,6 @@
 //
 //  WebViewController.swift
-//  SWFrame
+//  iOSFrame
 //
 //  Created by 杨建祥 on 2020/4/20.
 //
@@ -175,7 +175,7 @@ open class WebViewController: ScrollViewController, View {
     }
     
 //    func saveCookies(_ cookies: [HTTPCookie]) {
-//        // log.debug("【SWFrame】保存Cookies: \(cookies)")
+//        // log.debug("【iOSFrame】保存Cookies: \(cookies)")
 //        for cookie in cookies {
 //            HTTPCookieStorage.shared.setCookie(cookie)
 //        }
