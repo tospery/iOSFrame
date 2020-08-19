@@ -71,10 +71,13 @@ public func metric(_ value: CGFloat) -> CGFloat {
 }
 
 public func connectedToInternet() -> Observable<Bool> {
-    return reachSubject.asObservable().ignore(.unknown).distinctUntilChanged().map { status -> Bool in
-        switch status {
-        case .reachable: return true
-        default: return false
+    return reachSubject.asObservable()
+        .ignore(.unknown)
+        .distinctUntilChanged()
+        .map { status -> Bool in
+            switch status {
+            case .reachable: return true
+            default: return false
         }
     }
 }
