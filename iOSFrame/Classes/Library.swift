@@ -9,11 +9,9 @@ import UIKit
 import QMUIKit
 import RxSwift
 import RxCocoa
-import Reachability
 import SwiftyBeaver
 
 public let log = SwiftyBeaver.self
-//public let reachSubject = BehaviorRelay<Reachability.Connection>.init(value: .unavailable)
 
 open class Library {
     
