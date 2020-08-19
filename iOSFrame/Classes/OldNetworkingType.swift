@@ -1,5 +1,5 @@
 //
-//  NetworkingType.swift
+//  OldNetworkingType.swift
 //  iOSFrame
 //
 //  Created by 杨建祥 on 2020/4/9.
@@ -7,16 +7,16 @@
 
 import UIKit
 import RxSwift
-import ObjectMapper
 import Moya
 import Alamofire
+import ObjectMapper
 
-public protocol NetworkingType {
+public protocol OldNetworkingType {
     associatedtype T: TargetType
     var provider: NetworkProvider<T> { get }
 }
 
-public extension NetworkingType {
+public extension OldNetworkingType {
     static func endpointsClosure<T>(_ xAccessToken: String? = nil) -> (T) -> Endpoint where T: TargetType {
         return { target in
             let endpoint = MoyaProvider.defaultEndpointMapping(for: target)
