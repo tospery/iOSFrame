@@ -98,8 +98,8 @@ public extension NetworkingType {
         return self.request(target)
             .mapObject(BaseResponse.self)
             .flatMap { response -> Single<Any?> in
-                guard response.code == successCode else {
-                    return .error(SFError.server(response.message))
+                guard response.code(target) == successCode else {
+                    return .error(SFError.server(response.message(target)))
                 }
                 return .just(response.data)
         }
@@ -110,10 +110,10 @@ public extension NetworkingType {
         return self.request(target)
             .mapObject(BaseResponse.self)
             .flatMap { response -> Single<Model> in
-                guard response.code == successCode,
-                    let json = response.data as? [String: Any],
+                guard response.code(target) == successCode,
+                    let json = response.data(target) as? [String: Any],
                     let model = Model.init(JSON: json) else {
-                        return .error(SFError.server(response.message))
+                        return .error(SFError.server(response.message(target)))
                 }
                 return .just(model)
         }
@@ -124,10 +124,10 @@ public extension NetworkingType {
         return self.request(target)
             .mapObject(BaseResponse.self)
             .flatMap { response -> Single<[Model]> in
-                guard response.code == successCode else {
-                    return .error(SFError.server(response.message))
+                guard response.code(target) == successCode else {
+                    return .error(SFError.server(response.message(target)))
                 }
-                let jsonArray = response.data as? [[String : Any]] ?? []
+                let jsonArray = response.data(target) as? [[String : Any]] ?? []
                 let models = [Model].init(JSONArray: jsonArray)
                 return .just(models)
         }
@@ -138,10 +138,10 @@ public extension NetworkingType {
         return self.request(target)
             .mapObject(BaseResponse.self)
             .flatMap { response -> Single<List<Model>> in
-                guard response.code == successCode,
-                    let json = response.data as? [String: Any],
+                guard response.code(target) == successCode,
+                    let json = response.data(target) as? [String: Any],
                     let list = List<Model>.init(JSON: json) else {
-                        return .error(SFError.server(response.message))
+                        return .error(SFError.server(response.message(target)))
                 }
                 return .just(list)
         }
