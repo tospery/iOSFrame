@@ -149,13 +149,3 @@ public extension NetworkingType {
     }
 }
 
-public struct Networking: NetworkingType {
-
-    public typealias Target = MultiTarget
-    public let provider: MoyaProvider<MultiTarget>
-
-    public init(provider: MoyaProvider<MultiTarget>) {
-        self.provider = provider
-    }
-    
-}

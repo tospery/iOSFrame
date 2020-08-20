@@ -17,33 +17,15 @@ public protocol ResponseType {
     var code: Int { get }
     var message: String { get }
     var data: Any? { get }
-    
+}
+
+public protocol ResponseMapping {
     func mappingCode(map: Map) -> Int
     func mappingMessage(map: Map) -> String
     func mappingData(map: Map) -> Any?
 }
 
-extension ResponseType {
-    public func mappingCode(map: Map) -> Int {
-        var code: Int?
-        code        <- map["code"]
-        return code ?? 0
-    }
-    
-    public func mappingMessage(map: Map) -> String {
-        var message: String?
-        message     <- map["message"]
-        return message ?? ""
-    }
-    
-    public func mappingData(map: Map) -> Any? {
-        var data: Any?
-        data        <- map["data"]
-        return data
-    }
-}
-
-public struct BaseResponse: ModelType {
+public struct BaseResponse: ResponseType, ModelType {
     public var code = 0
     public var message = ""
     public var data: Any?
@@ -55,10 +37,14 @@ public struct BaseResponse: ModelType {
     }
 
     mutating public func mapping(map: Map) {
-        if let responseType = self as? ResponseType {
-            code = responseType.mappingCode(map: map)
-            message = responseType.mappingMessage(map: map)
-            data = responseType.mappingData(map: map)
+        if let mapping = self as? ResponseMapping {
+            code = mapping.mappingCode(map: map)
+            message = mapping.mappingMessage(map: map)
+            data = mapping.mappingData(map: map)
+        } else {
+            code        <- map["code"]
+            message     <- map["message"]
+            data        <- map["data"]
         }
     }
     
