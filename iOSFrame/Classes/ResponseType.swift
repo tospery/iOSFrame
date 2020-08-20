@@ -43,7 +43,7 @@ extension ResponseType {
     }
 }
 
-public struct BaseResponse: ResponseType, ModelType {
+public struct BaseResponse: ModelType {
     public var code = 0
     public var message = ""
     public var data: Any?
@@ -55,8 +55,11 @@ public struct BaseResponse: ResponseType, ModelType {
     }
 
     mutating public func mapping(map: Map) {
-        code = mappingCode(map: map)
-        message = mappingMessage(map: map)
-        data = mappingData(map: map)
+        if let responseType = self as? ResponseType {
+            code = responseType.mappingCode(map: map)
+            message = responseType.mappingMessage(map: map)
+            data = responseType.mappingData(map: map)
+        }
     }
+    
 }

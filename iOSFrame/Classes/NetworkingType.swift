@@ -31,7 +31,7 @@ public extension NetworkingType {
                 request.timeoutInterval = 15 // Constant.Network.timeout
                 closure(.success(request))
             } catch {
-                log.error(error.localizedDescription)
+                closure(.failure(MoyaError.underlying(error, nil)))
             }
         }
     }
@@ -45,7 +45,11 @@ public extension NetworkingType {
     static var callbackQueue: DispatchQueue? {
         return nil
     }
-        
+    
+    static var session: Session {
+        return MoyaProvider<Target>.defaultAlamofireSession()
+    }
+    
     static var plugins: [PluginType] {
         var plugins: [PluginType] = []
         #if DEBUG
@@ -143,4 +147,15 @@ public extension NetworkingType {
         }
         .observeOn(MainScheduler.instance)
     }
+}
+
+public struct Networking: NetworkingType {
+
+    public typealias Target = MultiTarget
+    public let provider: MoyaProvider<MultiTarget>
+
+    public init(provider: MoyaProvider<MultiTarget>) {
+        self.provider = provider
+    }
+    
 }
