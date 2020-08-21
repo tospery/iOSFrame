@@ -94,6 +94,18 @@ public extension NetworkingType {
             .observeOn(MainScheduler.instance)
     }
     
+    func requestBase(_ target: Target) -> Single<BaseResponse> {
+        return self.request(target)
+            .mapObject(BaseResponse.self)
+            .flatMap { response -> Single<BaseResponse> in
+                guard response.code(target) == successCode else {
+                    return .error(SFError.server(response.message(target)))
+                }
+                return .just(response)
+        }
+        .observeOn(MainScheduler.instance)
+    }
+    
     func requestData(_ target: Target) -> Single<Any?> {
         return self.request(target)
             .mapObject(BaseResponse.self)
