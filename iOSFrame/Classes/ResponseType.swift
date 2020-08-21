@@ -20,13 +20,11 @@ public protocol ResponseType {
     var json: [String: Any] { get }
 }
 
-public protocol ResponseMappable {
+public protocol ResponseCompatible {
     func code(map: Map) -> Int
     func message(map: Map) -> String
     func data(map: Map) -> Any?
-}
-
-public protocol ResponseConvertible {
+    
     func code(_ target: TargetType) -> Int
     func message(_ target: TargetType) -> String
     func data(_ target: TargetType) -> Any?
@@ -45,10 +43,10 @@ public struct BaseResponse: ResponseType, ModelType {
     }
 
     mutating public func mapping(map: Map) {
-        if let mappable = self as? ResponseMappable {
-            code = mappable.code(map: map)
-            message = mappable.message(map: map)
-            data = mappable.data(map: map)
+        if let compatible = self as? ResponseCompatible {
+            code = compatible.code(map: map)
+            message = compatible.message(map: map)
+            data = compatible.data(map: map)
         } else {
             code        <- map["code"]
             message     <- map["message"]
@@ -58,24 +56,24 @@ public struct BaseResponse: ResponseType, ModelType {
     }
     
     func code(_ target: TargetType) -> Int {
-        if let convertible = self as? ResponseConvertible {
-            return convertible.code(target)
+        if let compatible = self as? ResponseCompatible {
+            return compatible.code(target)
         } else {
             return self.code
         }
     }
     
     func message(_ target: TargetType) -> String {
-        if let convertible = self as? ResponseConvertible {
-            return convertible.message(target)
+        if let compatible = self as? ResponseCompatible {
+            return compatible.message(target)
         } else {
             return self.message
         }
     }
     
     func data(_ target: TargetType) -> Any? {
-        if let convertible = self as? ResponseConvertible {
-            return convertible.data(target)
+        if let compatible = self as? ResponseCompatible {
+            return compatible.data(target)
         } else {
             return self.data
         }
