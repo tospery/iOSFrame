@@ -11,7 +11,7 @@ import Moya
 
 public enum SFError: Error {
     case network
-    case server(String?)
+    case server(Int, String?)
     case expired
     case illegal(String?)
 }
@@ -23,7 +23,7 @@ public extension Error {
     }
 
     var isServer: Bool {
-        return ((self as NSError).code == (SFError.server(nil) as NSError).code && (self as NSError).domain.contains(".APPError")) || ((self as NSError).code == 500)
+        return ((self as NSError).code == (SFError.server(0, nil) as NSError).code && (self as NSError).domain.contains(".APPError")) || ((self as NSError).code == 500)
     }
 
     var isExpired: Bool {
