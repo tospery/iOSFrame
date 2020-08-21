@@ -28,7 +28,7 @@ public extension NetworkingType {
             do {
                 var request = try endpoint.urlRequest()
                 request.httpShouldHandleCookies = true
-                request.timeoutInterval = 15 // Constant.Network.timeout
+                request.timeoutInterval = 15
                 closure(.success(request))
             } catch {
                 closure(.failure(MoyaError.underlying(error, nil)))
