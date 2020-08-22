@@ -67,10 +67,6 @@ final public class ReachabilityManager {
     
 }
 
-extension Notification.Name {
-    static let networkChanged = Notification.Name("com.apple.system.config.network_change")
-}
-
 // unknown
 //public let reachSubject = BehaviorRelay<Reachability.Connection?>.init(value: nil) // .ignore(.none)
 //
