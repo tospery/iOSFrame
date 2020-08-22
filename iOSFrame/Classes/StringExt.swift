@@ -34,6 +34,11 @@ public extension String {
         return nil
     }
     
+    init<Subject>(fullname subject: Subject) {
+        self.init(reflecting: subject)
+        self = self.replacingOccurrences(of: UIApplication.shared.name + ".", with: "")
+    }
+    
 //    func rect(with size: CGSize, attributes: [NSAttributedString.Key: Any]) -> CGRect {
 //        let options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
 //        let rect = self.boundingRect(with: size, options: options, attributes: attributes, context: nil)
