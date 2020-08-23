@@ -99,7 +99,7 @@ public extension NetworkingType {
             .mapObject(BaseResponse.self)
             .flatMap { response -> Single<BaseResponse> in
                 guard response.code(target) == successCode else {
-                    return .error(SFError.server(response.code, response.message(target)))
+                    return .error(APPError.server(response.code, response.message(target)))
                 }
                 return .just(response)
         }
@@ -111,7 +111,7 @@ public extension NetworkingType {
             .mapObject(BaseResponse.self)
             .flatMap { response -> Single<Any?> in
                 guard response.code(target) == successCode else {
-                    return .error(SFError.server(response.code, response.message(target)))
+                    return .error(APPError.server(response.code, response.message(target)))
                 }
                 return .just(response.data)
         }
@@ -125,7 +125,7 @@ public extension NetworkingType {
                 guard response.code(target) == successCode,
                     let json = response.data(target) as? [String: Any],
                     let model = Model.init(JSON: json) else {
-                        return .error(SFError.server(response.code, response.message(target)))
+                        return .error(APPError.server(response.code, response.message(target)))
                 }
                 return .just(model)
         }
@@ -137,7 +137,7 @@ public extension NetworkingType {
             .mapObject(BaseResponse.self)
             .flatMap { response -> Single<[Model]> in
                 guard response.code(target) == successCode else {
-                    return .error(SFError.server(response.code, response.message(target)))
+                    return .error(APPError.server(response.code, response.message(target)))
                 }
                 let jsonArray = response.data(target) as? [[String : Any]] ?? []
                 let models = [Model].init(JSONArray: jsonArray)
@@ -153,7 +153,7 @@ public extension NetworkingType {
                 guard response.code(target) == successCode,
                     let json = response.data(target) as? [String: Any],
                     let list = List<Model>.init(JSON: json) else {
-                        return .error(SFError.server(response.code, response.message(target)))
+                        return .error(APPError.server(response.code, response.message(target)))
                 }
                 return .just(list)
         }

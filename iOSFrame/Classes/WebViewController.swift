@@ -162,6 +162,7 @@ open class WebViewController: ScrollViewController, View {
         super.bind(reactor: reactor)
         // state
         reactor.state.map { $0.title }
+            .distinctUntilChanged()
             .bind(to: self.navigationBar.titleLabel.rx.text)
             .disposed(by: self.disposeBag)
     }
