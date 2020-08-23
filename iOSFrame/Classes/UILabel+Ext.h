@@ -6,12 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreText/CoreText.h>
 
 @interface UILabel (Ext)
-
-+ (CGSize)sizeThatFits:(NSAttributedString *)attributedString
-                 limit:(CGSize)size
-                 lines:(NSUInteger)numberOfLines;
 
 @end
