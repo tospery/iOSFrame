@@ -46,7 +46,6 @@ public class MyConsoleDestination: BaseDestination {
         levelColor.info = "💙 "         // blue
         levelColor.warning = "💛 "     // yellow
         levelColor.error = "❤️ "       // red
-        self.format = "$DHH:mm:ss.SSS$d $T $C$L$c $N.$F:$l - $M"
     }
 
     // print to Xcode Console. uses full base class functionality
