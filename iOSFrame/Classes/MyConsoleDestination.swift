@@ -32,7 +32,6 @@ public class MyConsoleDestination: BaseDestination {
                 levelColor.info = "💙 "         // blue
                 levelColor.warning = "💛 "     // yellow
                 levelColor.error = "❤️ "       // red
-
             }
         }
     }
@@ -54,12 +53,7 @@ public class MyConsoleDestination: BaseDestination {
         let formattedString = super.send(level, msg: msg, thread: thread, file: file, function: function, line: line, context: context)
 
         if let str = formattedString {
-            let message = "【\(UIApplication.shared.bundleIdentifier)】\(str)"
-            if #available(iOS 10.0, *) {
-                os_log("%{public}s", message)
-            } else {
-                NSLog("%@", message)
-            }
+            print(str)
         }
         return formattedString
     }
