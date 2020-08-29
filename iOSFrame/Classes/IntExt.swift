@@ -14,6 +14,18 @@ public extension Int {
         return ByteCountFormatter.string(fromByteCount: Int64(self), countStyle: .file)
     }
     
+    init?(any: Any?) {
+        if let string = any as? String {
+            self.init(string)
+            return
+        }
+        if let number = any as? Int {
+            self = number
+            return
+        }
+        return nil
+    }
+    
 }
 
 public extension IntegerLiteralType {
