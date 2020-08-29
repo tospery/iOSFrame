@@ -25,7 +25,7 @@ open class Library {
     }
 
     open class func setupSwiftyBeaver() {
-        log.addDestination(MyConsoleDestination.init())
+        log.addDestination(ConsoleDestination.init())
         log.addDestination(FileDestination.init())
     }
     

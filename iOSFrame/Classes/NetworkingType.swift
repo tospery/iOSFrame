@@ -67,7 +67,7 @@ public extension NetworkingType {
     
     public static func output(target: TargetType, items: [String]) {
         for item in items {
-            log.info(item)
+            log.debug(item)
         }
     }
 }
