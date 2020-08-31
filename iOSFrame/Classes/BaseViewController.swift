@@ -20,7 +20,7 @@ open class BaseViewController: UIViewController {
     public var disposeBag = DisposeBag()
     public let navigator: NavigatorType
     
-    public let resultSubject = PublishSubject<Any?>()
+    // public let resultSubject = PublishSubject<Any?>()
     
     public var hidesNavigationBar = false
     public var hidesNavBottomLine = false
