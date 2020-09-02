@@ -13,7 +13,6 @@ import WebKit
 import URLNavigator
 import ReactorKit
 import SwifterSwift
-// import WebViewJavascriptBridge // YJX_TODO 剔除
 
 open class WebViewController: ScrollViewController, View {
     
