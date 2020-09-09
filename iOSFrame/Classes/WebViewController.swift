@@ -114,7 +114,7 @@ open class WebViewController: ScrollViewController, View {
 //    }
 
     deinit {
-        log.debug("回收了Web容器")
+        print("回收了Web容器")
         self.webView.navigationDelegate = nil
         self.webView.uiDelegate = nil
     }
@@ -175,7 +175,7 @@ open class WebViewController: ScrollViewController, View {
     }
     
 //    func saveCookies(_ cookies: [HTTPCookie]) {
-//        // log.debug("【iOSFrame】保存Cookies: \(cookies)")
+//        // DDLogDebug("【iOSFrame】保存Cookies: \(cookies)")
 //        for cookie in cookies {
 //            HTTPCookieStorage.shared.setCookie(cookie)
 //        }
@@ -194,7 +194,7 @@ open class WebViewController: ScrollViewController, View {
 extension WebViewController: WKNavigationDelegate {
 
     open func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        log.debug(navigationAction.request.url?.absoluteString)
+        print(navigationAction.request.url?.absoluteString)
         decisionHandler(.allow)
     }
     
@@ -233,7 +233,7 @@ extension WebViewController: WKUIDelegate {
 extension WebViewController: WKScriptMessageHandler {
     
     open func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        log.info("\(message.name): \(message.body)")
+        print("\(message.name): \(message.body)")
         self.handle(message.name, message.body)
     }
     

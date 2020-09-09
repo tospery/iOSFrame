@@ -54,7 +54,7 @@ public extension NetworkingType {
         var plugins: [PluginType] = []
         let logger = NetworkLoggerPlugin.init()
         logger.configuration.logOptions = [.requestBody, .successResponseBody, .errorResponseBody]
-        logger.configuration.output = output
+        // logger.configuration.output = output
         plugins.append(logger)
         return plugins
     }
@@ -63,11 +63,11 @@ public extension NetworkingType {
         return false
     }
     
-    static func output(target: TargetType, items: [String]) {
-        for item in items {
-            log.debug(item)
-        }
-    }
+//    static func output(target: TargetType, items: [String]) {
+//        for item in items {
+//            DDLogDebug(item)
+//        }
+//    }
 }
 
 public extension NetworkingType {

@@ -41,7 +41,6 @@ Pod::Spec.new do |s|
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'Foundation', 'UIKit', 'Accelerate', 'QuartzCore', 'CoreLocation', 'SystemConfiguration', 'AdSupport', 'WebKit', 'CoreGraphics', 'Photos'
   s.dependency 'QMUIKit/QMUICore', '4.2.0'
-  s.dependency 'SwiftyBeaver', '1.9.1'
   s.dependency 'RxSwiftExt', '5.2.0'
   s.dependency 'RxDataSources', '4.0.1'
   s.dependency 'RxViewController', '1.0.0'

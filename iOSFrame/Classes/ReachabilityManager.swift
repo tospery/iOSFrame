@@ -60,7 +60,7 @@ final public class ReachabilityManager {
 //            self.disposeBag = nil
 //        }
 //        self.disposeBag = Observable<Int>.timer(.seconds(2), scheduler: MainScheduler.instance).subscribe(onNext: { _ in
-//            log.debug("wifi发送切换了！！！！")
+//            DDLogDebug("wifi发送切换了！！！！")
 //            reachSubject.accept(.reachable(.ethernetOrWiFi))
 //        })
 //    }
