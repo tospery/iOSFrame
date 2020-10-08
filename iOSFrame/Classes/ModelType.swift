@@ -109,13 +109,13 @@ public protocol Storable: ModelType, Identifiable, Codable, Equatable {
     func save(ignoreId: Bool)
 
     static func objectKey(id: String?) -> String
-    static func arrayKey(page: Int?) -> String
+    static func arrayKey(page: String?) -> String
 
     static func storeObject(_ object: Self?, id: String?)
-    static func storeArray(_ array: [Self]?, page: Int?)
+    static func storeArray(_ array: [Self]?, page: String?)
 
     static func cachedObject(id: String?) -> Self?
-    static func cachedArray(page: Int?) -> [Self]?
+    static func cachedArray(page: String?) -> [Self]?
     
     static func eraseObject(id: String?)
 }
@@ -131,8 +131,8 @@ public extension Storable {
         return String(fullname: self) + "#object#" + id
     }
 
-    static func arrayKey(page: Int? = nil) -> String {
-        guard let page = page?.string, !page.isEmpty else { return String(fullname: self) + "#array" }
+    static func arrayKey(page: String? = nil) -> String {
+        guard let page = page, !page.isEmpty else { return String(fullname: self) + "#array" }
         return String(fullname: self) + "#array#" + page
     }
     
